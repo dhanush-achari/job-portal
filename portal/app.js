@@ -17,6 +17,15 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// connecting databses
+var url = process.env.DATABASE_URL || 'mongodb://localhost:27017/job-portal';
+mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true,useCreateIndex: true,useFindAndModify:false });
+var db = mongoose.connection;
+db.on('error',console.error.bind(console,"conncetion error"));
+db.once('open',function(){
+  console.log("connected")
+})
+
 // use ejs-locals/mate for all the ejs template
 app.engine("ejs",engine);
 
