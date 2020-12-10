@@ -10,9 +10,12 @@ const applicationSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"Jobseeker"
     },
+    employerid:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Employer"
+    },
+
 })
-
-
 
 
 module.exports = mongoose.model("Application",applicationSchema)
