@@ -1,0 +1,182 @@
+<%   layout("layouts/boilerplate.ejs") -%>
+
+<!-- Wrapper -->
+<div id="wrapper" class="mm-page mm-slideout" style="padding-top: 76px;"> 
+  <!-- Header Container -->
+   <!-- Header Container -->
+ <header id="utf-header-container-block" style="position: fixed;"> 
+    <div id="header">
+      <div class="container"> 
+        <div class="utf-left-side"> 
+          <div id="logo"> <a href="index-1.html"><img src="images/logo.png" alt=""></a> </div>
+          <nav id="navigation">
+            <ul id="responsive">
+              <li><a href="index-1.html" class="current">Home</a>
+                
+              </li>
+              <li><a href="register.html">Jobseeker</a>
+              <!--  <ul class="dropdown-nav">
+                  <li><a href="#"><i class="icon-feather-chevrons-right"></i> Browse Jobs</a>
+                    <ul class="dropdown-nav">
+                      <li><a href="jobs-list-layout-leftside.html"><i class="icon-feather-chevrons-right"></i> Jobs List Left Sidebar</a></li>
+                      
+                    </ul>
+                  </li>
+                  <li><a href="browse-companies.html"><i class="icon-feather-chevrons-right"></i> Browse Companies</a></li>
+                  <li><a href="single-job-page.html"><i class="icon-feather-chevrons-right"></i> Jobs Detail Page</a></li>
+                  
+                  </li>				  
+                </ul> -->
+              </li>
+              <li><a href="registerE.html">Employers</a>
+			  
+              <!--  <ul class="dropdown-nav">
+                  <li><a href="dashboard.html"><i class="icon-feather-chevrons-right"></i> Dashboard</a></li>
+                  <li><a href="dashboard-jobs-post.html"><i class="icon-feather-chevrons-right"></i> Manage Jobs Post</a></li> 
+				  <li><a href="dashboard-manage-jobs.html"><i class="icon-feather-chevrons-right"></i> Manage Jobs</a></li>
+				  <li><a href="dashboard-manage-resume.html"><i class="icon-feather-chevrons-right"></i> Manage Resume</a></li>
+				  
+                    
+                  </li>
+                  
+                  <li><a href="dashboard-my-profile.html"><i class="icon-feather-chevrons-right"></i> My Profile</a></li>
+                </ul> -->
+              </li>
+               <li><a href="login.html">Admin</a> </li>
+                <!-- <ul class="dropdown-nav">
+				  <li><a href="about-us.html"><i class="icon-feather-chevrons-right"></i> About Us</a></li>	
+				  <li><a href="login.html"><i class="icon-feather-chevrons-right"></i> Login</a></li>
+                  <li><a href="register.html"><i class="icon-feather-chevrons-right"></i> Sign Up</a></li>
+				  <li><a href="checkout-page.html"><i class="icon-feather-chevrons-right"></i> Order Checkout</a></li>
+				  <li><a href="order-confirmation.html"><i class="icon-feather-chevrons-right"></i> Order Confirmation</a></li>
+				  <li><a href="invoice-template.html"><i class="icon-feather-chevrons-right"></i> Invoice Template</a></li>
+				
+				  <li><a href="faq-page.html"><i class="icon-feather-chevrons-right"></i> FAQ Page</a></li>	
+                  <li><a href="pages-404.html"><i class="icon-feather-chevrons-right"></i> 404 Page</a></li>
+                </ul>
+              </li> -->
+			  
+			  <li><a href="contact.html">Contact-Us</a></li>
+			  <li><a href="about-us.html">About-Us</a></li>
+            </ul>
+          </nav>
+          <div class="clearfix"></div>                    
+        </div>
+        
+        <div class="utf-right-side"> 
+		  <div class="utf-header-widget-item"> <a href="register.html" class="popup-with-zoom-anim log-in-button"><i class="icon-feather-log-in"></i> <span>Sign Up</span></a> </div>	
+		  <div class="utf-header-widget-item"> 
+            <div class="utf-header-notifications user-menu">
+              
+            </div>
+          </div>
+          <span class="mmenu-trigger">
+			<button class="hamburger utf-hamburger-collapse-item" type="button"> <span class="utf-hamburger-box-item"> <span class="utf-hamburger-inner-item"></span> </span> </button>
+          </span> 
+		</div>
+      </div>
+    </div>
+  </header>
+  <div class="clearfix"></div>
+  <!-- Header Container / End -->
+  <div class="clearfix"></div>
+  <!-- Header Container / End --> 
+  
+  <!-- Titlebar -->
+  <div id="titlebar" class="gradient">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Candidate Register</h2>
+          <nav id="breadcrumbs">
+            <ul>
+              <li><a href="index-1.html">Home</a></li>
+              <li>Register</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6 offset-xl-3">
+        <div class="utf-login-register-page-aera margin-bottom-50"> 
+          <div class="utf-welcome-text-item">
+            <h3>Looking for a JOB...?</h3>
+            <span>Already Have an Account? <a href="loginC.html">Log In!</a></span> 
+		  </div>
+          <div class="utf-account-type">
+            <div>
+              <a href="registerE.html"><input type="button" name="utf-account-type-radio" id="freelancer-radio" class="utf-account-type-radio" checked="">
+              <label for="freelancer-radio" data-tippy-placement="top" href="registerE.html"  class="utf-ripple-effect-dark" data-tippy="" data-original-title="Employer"><i class="icon-material-outline-business-center"></i>Employer</a></label>
+            </div>
+            <div>
+              <a href="register.html"><input type="button" name="utf-account-type-radio" id="employer-radio" class="utf-account-type-radio">
+              <label for="employer-radio" data-tippy-placement="top" class="utf-ripple-effect-dark" data-tippy="" data-original-title="Candidate"><i class="icon-material-outline-account-circle"></i>Candidate</a></label>
+            </div>
+          </div>
+          
+          <form method="post" id="utf-register-account-form">
+            <div class="utf-no-border">
+              <input type="text" class="utf-with-border" name="name-register" id="name-register" placeholder="User Name" >
+            </div>
+			
+             <div class="utf-no-border">
+              <input type="text" class="utf-with-border" name="emailaddress-register" id="emailaddress-register" placeholder="Email Address" >
+            </div>
+			
+            <div class="utf-no-border">
+              <input type="password" class="utf-with-border" name="password-register" id="password-register" placeholder="Password" >
+            </div>
+            <div class="utf-no-border">
+              <input type="password" class="utf-with-border" name="password-repeat-register" id="password-repeat-register" placeholder="Repeat Password" >
+            </div>
+			<div class="checkbox margin-top-10">
+				<input type="checkbox" id="two-step0">
+				<label for="two-step0"><span class="checkbox-icon"></span> By Registering You Confirm That You Accept <a href="terms-condition.html">Terms &amp; Conditions</a> and <a href="privacy-policy.html">Privacy Policy</a></label>
+		    </div>
+          </form>
+          <a href="dashboard.html"> <button class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" type="submit" style="width: 545px;"> Create An Account <i class="icon-feather-chevrons-right"></i></button></a>
+          
+          <div class="utf-social-login-separator-item"><span>or</span></div>
+          <div class="utf-social-login-buttons-block">
+            <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Facebook</button>
+			<button class="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i> Google+</button>
+			<button class="twitter-login ripple-effect"><i class="icon-brand-twitter"></i> Twitter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Subscribe Block Start -->
+  <section class="utf_cta_area_item utf_cta_area2_block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="utf_subscribe_block">
+                    <div class="col-xl-8 col-md-7">
+                        <div class="section-heading">
+                            <h2 class="utf_sec_title_item utf_sec_title_item2">Subscribe to Our Newsletter!</h2>
+                            <p class="utf_sec_meta">Subscribe to get latest updates and information.</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-5">
+                        <div class="contact-form-action">
+                            <form method="post">
+                                <i class="icon-material-baseline-mail-outline"></i>
+                                <input class="form-control" type="email" placeholder="Enter your email" required="">
+                                <button class="utf_theme_btn" type="submit">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <!-- Subscribe Block End -->
+  
