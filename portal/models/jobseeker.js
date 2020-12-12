@@ -5,11 +5,11 @@ const project = require("./project")
 const passportlocalmongoose = require("passport-local-mongoose");
 
 const jobseekerSchema = new mongoose.Schema({
-    username:{type:string,unique:true,required:true,trim:true},
-    fullname:string,
-    email:{type:string,unique:true,required:true,trim:true},
+    username:{type:String,unique:true,required:true,trim:true},
+    fullname:String,
+    email:{type:String,unique:true,required:true,trim:true},
     isverified:{type:Boolean,default:false},
-    address:{type:string},
+    address:{type:String},
     experience:[
         experience.schema
     ],
@@ -18,18 +18,18 @@ const jobseekerSchema = new mongoose.Schema({
     ],
     skills:[
         {
-         name:string,
+         name:String,
          level:string
        }
      ],
     project:[
         project.schema
     ],
-    resume:[{url:string,public_id:string}],
-    about:string,
-    country:string,
-    city:string,
-    phone:string
+    resume:[{url:string,public_id:String}],
+    about:String,
+    country:String,
+    city:String,
+    phone:String
 
 
 },{timestamps:true}) 

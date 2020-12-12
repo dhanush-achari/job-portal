@@ -13,12 +13,12 @@ const companySchema = new mongoose.model({
     website:String,
     social:{
         fb:String,
-        instagram:string
+        instagram:String
     },
     about:string,
     logo:{
-        url:string,
-        public_id:string
+        url:String,
+        public_id:String
     }
 });
 
