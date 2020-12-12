@@ -15,7 +15,7 @@ const companySchema = new mongoose.model({
         fb:String,
         instagram:String
     },
-    about:string,
+    about:String,
     logo:{
         url:String,
         public_id:String
