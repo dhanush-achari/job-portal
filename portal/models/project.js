@@ -4,6 +4,7 @@ const projectSchema = new mongoose.Schema({
     name:String,
     role:String,
     description:String,
+    link:String,
     startDate:{type:Date,required:true},
     endDate:{type:Date}
 },{timestamps:true})

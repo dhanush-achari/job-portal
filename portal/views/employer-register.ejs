@@ -1,5 +1,6 @@
 <%  layout("layouts/boilerplate.ejs")  -%>
 <!-- Wrapper -->
+
 <div id="wrapper" class="mm-page mm-slideout" style="padding-top: 76px;"> 
   <!-- Header Container -->
    <!-- Header Container -->
@@ -7,53 +8,17 @@
     <div id="header">
       <div class="container"> 
         <div class="utf-left-side"> 
-          <div id="logo"> <a href="index-1.html"><img src="images/logo.png" alt=""></a> </div>
+          <div id="logo"> <a href="/"><img src="/images/logo.png" alt=""></a> </div>
           <nav id="navigation">
             <ul id="responsive">
-              <li><a href="index-1.html" class="current">Home</a>
+              <li><a href="/" class="current">Home</a>
                 
               </li>
               <li><a href="register.html">Jobseeker</a>
-              <!--  <ul class="dropdown-nav">
-                  <li><a href="#"><i class="icon-feather-chevrons-right"></i> Browse Jobs</a>
-                    <ul class="dropdown-nav">
-                      <li><a href="jobs-list-layout-leftside.html"><i class="icon-feather-chevrons-right"></i> Jobs List Left Sidebar</a></li>
-                      
-                    </ul>
-                  </li>
-                  <li><a href="browse-companies.html"><i class="icon-feather-chevrons-right"></i> Browse Companies</a></li>
-                  <li><a href="single-job-page.html"><i class="icon-feather-chevrons-right"></i> Jobs Detail Page</a></li>
-                  
-                  </li>				  
-                </ul> -->
               </li>
               <li><a href="registerE.html">Employers</a>
-			  
-              <!--  <ul class="dropdown-nav">
-                  <li><a href="dashboard.html"><i class="icon-feather-chevrons-right"></i> Dashboard</a></li>
-                  <li><a href="dashboard-jobs-post.html"><i class="icon-feather-chevrons-right"></i> Manage Jobs Post</a></li> 
-				  <li><a href="dashboard-manage-jobs.html"><i class="icon-feather-chevrons-right"></i> Manage Jobs</a></li>
-				  <li><a href="dashboard-manage-resume.html"><i class="icon-feather-chevrons-right"></i> Manage Resume</a></li>
-				  
-                    
-                  </li>
-                  
-                  <li><a href="dashboard-my-profile.html"><i class="icon-feather-chevrons-right"></i> My Profile</a></li>
-                </ul> -->
               </li>
                <li><a href="login.html">Admin</a> </li>
-                <!-- <ul class="dropdown-nav">
-				  <li><a href="about-us.html"><i class="icon-feather-chevrons-right"></i> About Us</a></li>	
-				  <li><a href="login.html"><i class="icon-feather-chevrons-right"></i> Login</a></li>
-                  <li><a href="register.html"><i class="icon-feather-chevrons-right"></i> Sign Up</a></li>
-				  <li><a href="checkout-page.html"><i class="icon-feather-chevrons-right"></i> Order Checkout</a></li>
-				  <li><a href="order-confirmation.html"><i class="icon-feather-chevrons-right"></i> Order Confirmation</a></li>
-				  <li><a href="invoice-template.html"><i class="icon-feather-chevrons-right"></i> Invoice Template</a></li>
-				
-				  <li><a href="faq-page.html"><i class="icon-feather-chevrons-right"></i> FAQ Page</a></li>	
-                  <li><a href="pages-404.html"><i class="icon-feather-chevrons-right"></i> 404 Page</a></li>
-                </ul>
-              </li> -->
 			  
 			  <li><a href="contact.html">Contact-Us</a></li>
 			  <li><a href="about-us.html">About-Us</a></li>
@@ -104,6 +69,25 @@
       <div class="col-xl-6 offset-xl-3">
         <div class="utf-login-register-page-aera margin-bottom-50"> 
           <div class="utf-welcome-text-item">
+            <% if(success && success.length > 0){%>
+              <div class="container mt-3">
+                <div class="alert alert-success alert-dismissible fade show"role="alert">
+                         <h5 class="text-center mt-1"><%=success%></h5>  
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+                <% }if(error && error.length > 0){%>
+                  <div class="container mt-3">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <h5 class="text-center mt-1"><%=error%></h5>  
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                  </div>
+                <%}%>
             <h3>Looking for an Employee</h3>
             <span>Already Have an Account? <a href="login.html">Log In!</a></span> 
 		  </div>
@@ -115,50 +99,28 @@
            
           </div>
           
-          <form method="post" id="utf-register-account-form">
+          <form method="POST" action="/register/employer" id="utf-register-account-form">
             <div class="utf-no-border">
-              <input type="text" class="utf-with-border" name="name-register" id="name-register" placeholder="Concern Person Name" required="">
+              <input type="text" class="utf-with-border" name="username"  placeholder="Concern Person User Name" required>
+            </div>
+            <div class="utf-no-border">
+              <input type="text" class="utf-with-border" name="fullname" placeholder="Concern Person Full Name">
             </div>
 			<div class="utf-no-border">
-              <input type="text" class="utf-with-border" name="emailaddress-register" id="emailaddress-register" placeholder="Company Name" required="">
+              <input type="text" class="utf-with-border" name="email" placeholder="Email">
             </div>
             <div class="utf-no-border">
-              <input type="text" class="utf-with-border" name="emailaddress-register" id="emailaddress-register" placeholder="Email ID" required="">
-            </div>
-
-			
-				 <!-- <div class="btn-group bootstrap-select utf-with-border">
-            <select class="selectpicker utf-with-border" data-size="5" title="Select Jobs" tabindex="-98"><option class="bs-title-option" value="">Select Jobs</option>
-          <option>Web Designer</option>
-          <option>Web Developer</option>
-          <option>Graphic Designer</option>
-          <option>Android Developer</option>
-          <option>IOS Developer</option>
-          <option>UI/UX Designer</option>
-          <option>Graphics Designer</option>        
-        
-        </select>
-								
-				</select></div>
-		    </div>  -->
-            <div class="utf-no-border">
-              <input type="password" class="utf-with-border" name="password-register" id="password-register" placeholder="Password" required="">
+              <input type="password" class="utf-with-border" name="password" id="password-register" placeholder="Password" required>
             </div>
             <div class="utf-no-border">
-              <input type="password" class="utf-with-border" name="password-repeat-register" id="password-repeat-register" placeholder="Repeat Password" required="">
-            </div>
-            <div class="utf-no-border">
-              <input type="text" class="utf-with-border" name="emailaddress-register" id="emailaddress-register" placeholder="Company TagLine" required="">
-            </div>
-            <div class="utf-no-border">
-              <input type="text" class="utf-with-border" name="emailaddress-register" id="emailaddress-register" placeholder="Description" required="" size="55px">
+              <input type="password" class="utf-with-border" name="passwordConfirmation" id="passwordConfirmation" placeholder="Repeat Password" required>
             </div>
 			<div class="checkbox margin-top-10">
-				<input type="checkbox" id="two-step0">
+				<input type="checkbox" id="two-step0" required>
 				<label for="two-step0"><span class="checkbox-icon"></span> By Registering You Confirm That You Accept <a href="terms-condition.html">Terms &amp; Conditions</a> and <a href="privacy-policy.html">Privacy Policy</a></label>
 		    </div>
-          </form>
-    <a href="Empdashboard.html"><button class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" type="submit" style="width: 545px;">Create An Account <i class="icon-feather-chevrons-right"></i></button> </a>
+        <button class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" type="submit" style="width: 545px;">Create An Account <i class="icon-feather-chevrons-right"></i></button>
+      </form>
           <div class="utf-social-login-separator-item"><span>or</span></div>
           <div class="utf-social-login-buttons-block">
             <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Facebook</button>

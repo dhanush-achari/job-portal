@@ -9,8 +9,14 @@ const methodoverride = require("method-override");
 const engine  = require("ejs-mate");
 const passport = require("passport");
 const favicon = require('serve-favicon');
+const LocalStrategyseeker = require ('passport-local').Strategy;
+const LocalStrategyemployer = require ('passport-local').Strategy;
 
 
+
+// user models
+const Jobseeker = require("./models/jobseeker")
+const Employer = require("./models/employer")
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -36,7 +42,7 @@ app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodoverride("_method"))
@@ -54,11 +60,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 // add create strategy and serialise and deserialise user after creating user model
 
+passport.use (new LocalStrategyseeker (Jobseeker.authenticate()));
+passport.use (new LocalStrategyemployer (Employer.authenticate()));
+
+
+passport.serializeUser (Jobseeker.serializeUser ());
+passport.deserializeUser (Jobseeker.deserializeUser ());
+
+passport.serializeUser (Employer.serializeUser ());
+passport.deserializeUser (Employer.deserializeUser ());
 
 //middleware / local variable this should come before any route you render
 app.use(function(req,res,next){
   // app.locals.moment = require('moment');
-  // res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user;
   res.locals.success = req.session.success || "";
   delete req.session.success;
   res.locals.error = req.session.error || "";
@@ -68,7 +83,7 @@ app.use(function(req,res,next){
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -83,7 +98,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.redirect("/")
 });
 
 module.exports = app;

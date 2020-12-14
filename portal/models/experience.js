@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const experienceschema = new mongoose.Schema({
     company:String,
     location:String,
-    startDate:{type:Date,required:true},
+    startDate:{type:Date},  // add required true
     endDate:{type:Date},
     description:String
 

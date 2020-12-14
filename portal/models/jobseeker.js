@@ -6,10 +6,9 @@ const passportlocalmongoose = require("passport-local-mongoose");
 
 const jobseekerSchema = new mongoose.Schema({
     username:{type:String,unique:true,required:true,trim:true},
-    fullname:String,
     email:{type:String,unique:true,required:true,trim:true},
     isverified:{type:Boolean,default:false},
-    address:{type:String},
+    // address:{type:String},
     experience:[
         experience.schema
     ],
@@ -19,20 +18,27 @@ const jobseekerSchema = new mongoose.Schema({
     skills:[
         {
          name:String,
-         level:string
+         level:String
        }
      ],
     project:[
         project.schema
     ],
-    resume:[{url:string,public_id:String}],
+    resume:{url:String,public_id:String},
+    dob:{type:Date},
+    bio:{
+    fullname:String,
     about:String,
     country:String,
-    city:String,
-    phone:String
-
-
+    // city:String,
+    phone:String,
+    gender:String,
+    nationality:String,
+    currentCompany:String
+}
 },{timestamps:true}) 
 
-
+jobseekerSchema.plugin(passportlocalmongoose, {
+    usernameField: 'email'
+  });
 module.exports = mongoose.model("Jobseeker",jobseekerSchema)

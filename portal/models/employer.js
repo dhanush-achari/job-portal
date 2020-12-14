@@ -3,7 +3,7 @@ const passportlocalmongoose = require("passport-local-mongoose");
 
 
 const employerschema = new mongoose.Schema({
-      
+    username:String,
     fullname:String,
     email:{type:String,unique:true,required:true,trim:true},
     isverified:{type:Boolean,default:false},
@@ -15,5 +15,7 @@ const employerschema = new mongoose.Schema({
     }
 },{timestamps:true})
 
-
+employerschema.plugin(passportlocalmongoose, {
+    usernameField: 'email'
+  });
 module.exports = mongoose.model("Employer",employerschema);
