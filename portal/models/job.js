@@ -8,7 +8,7 @@ const jobSchema = new mongoose.Schema({
  description:String,
  company:{
      type:mongoose.Schema.Types.ObjectId,
-     ref:"Compnay"
+     ref:"Company"
  },
  jobType:String,
  address:String,

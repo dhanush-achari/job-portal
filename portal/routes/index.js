@@ -1,12 +1,19 @@
 const express = require('express');
+const Job = require("../models/job")
 const router = express.Router();
-const {errorHandler} = require("../middleware/index")
+const {errorHandler,SearchFilter} = require("../middleware/index")
 const {Empregister,studentregister} = require("../controller/index")
 
 
 /* GET Index page. */
-router.get("/",(req,res,next)=>{
-  res.render("index")
+router.get("/",SearchFilter,async (req,res,next)=>{
+          const {dbquery} = res.locals;
+          delete res.locals.dbquery
+          console.log(dbquery)
+          const Jobs = await Job.find(dbquery)
+          res.send(Jobs)
+
+          // res.render("index")
 })
 
 /* GET student login page. */

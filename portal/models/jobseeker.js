@@ -9,6 +9,7 @@ const jobseekerSchema = new mongoose.Schema({
     email:{type:String,unique:true,required:true,trim:true},
     isverified:{type:Boolean,default:false},
     // address:{type:String},
+    JobPreference:[String],
     experience:[
         experience.schema
     ],

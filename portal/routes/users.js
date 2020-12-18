@@ -18,6 +18,7 @@ router.get('/dashboard', function(req, res, next) {
 
 /* 
 Post user details
+
 */
 router.post("/details",errorHandler(addDetails))
 /* 

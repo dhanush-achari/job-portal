@@ -11,7 +11,8 @@ const passport = require("passport");
 const favicon = require('serve-favicon');
 const LocalStrategyseeker = require ('passport-local').Strategy;
 const LocalStrategyemployer = require ('passport-local').Strategy;
-
+const seed = require("./seed")
+// seed();
 
 
 // user models
@@ -20,6 +21,7 @@ const Employer = require("./models/employer")
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const jobrouter = require('./routes/job')
 
 const app = express();
 
@@ -83,7 +85,9 @@ app.use(function(req,res,next){
 
 
 app.use('/', indexRouter);
+app.use('/jobs',jobrouter)
 app.use('/user', usersRouter);
+// app.use('/employer')
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

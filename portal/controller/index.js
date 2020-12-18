@@ -10,29 +10,29 @@ module.exports={
         if(req.body.password.length<6)
         {
             error = "Password must be 6 digit long";
-            return res.render("employer-register",{error,username,email,fullname})
+            return res.render("employer-register",{error,username,email})
         }
         if(req.body.password != req.body.passwordConfirmation)
         {
             error = "Password dont Match";
-            return res.render("employer-register",{error,username,email,fullname})
+            return res.render("employer-register",{error,username,email})
         }
         let user = await Employer.findOne({$or:[{username},{email}]});
         if(user && user.email == email)
         {
             error = "Employer with given Email already exists";
-            return res.render("employer-register",{error,username,fullname})
+            return res.render("employer-register",{error,username})
         }
          if(user && user.username == username)
          {
              error = "Employer with given username already exists";
-             return res.render("employer-register",{error,email,fullname})
+             return res.render("employer-register",{error,email})
          }
          user = await Jobseeker.findOne({email});
          if(user)
          {
              error = "User is Already registered as student"
-             return res.render("employer-register",{error,fullname})
+             return res.render("employer-register",{error})
          }
          let emp = await Employer.register(new Employer(req.body),req.body.password);
          console.log(emp);
@@ -46,34 +46,34 @@ module.exports={
 
     },
     async studentregister(req,res,next){
-        console.log(req.body)
+        console.log(req.body,"reqbidy")
         const{username,email} = req.body;
         if(req.body.password.length<6)
         {
             error = "Password must be 6 digit long";
-            return res.render("candidate-register",{error,username,email,fullname})
+            return res.render("candidate-register",{error,username,email})
         }
         if(req.body.password != req.body.passwordConfirmation)
         {
             error = "Password dont Match";
-            return res.render("candidate-register",{error,username,email,fullname})
+            return res.render("candidate-register",{error,username,email})
         }
         let user = await Jobseeker.findOne({$or:[{username},{email}]});
         if(user && user.email == email)
         {
             error = "Student with given Email already Registered";
-            return res.render("candidate-register",{error,username,fullname})
+            return res.render("candidate-register",{error,username})
         }
          if(user && user.username == username)
          {
              error = "Student with given username already exists";
-             return res.render("candidate-register",{error,email,fullname})
+             return res.render("candidate-register",{error,email})
          }
          user = await Employer.findOne({email});
          if(user)
          {
              error = " The given Email is Already registered as a Employer"
-             return res.render("candidate-register",{error,fullname})
+             return res.render("candidate-register",{error})
          }
          let emp = await Jobseeker.register(new Jobseeker(req.body),req.body.password);
         //  console.log(emp);
