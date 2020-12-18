@@ -1,11 +1,10 @@
 const Employer = require("../models/employer");
 const Jobseeker = require("../models/jobseeker")
-
-
-
+const util = require("util")
+const passport = require("passport");
 module.exports={
     async Empregister(req,res,next){
-        console.log(req.body);
+        // console.log(req.body);
         const{username,email} = req.body;
         if(req.body.password.length<6)
         {
@@ -35,18 +34,16 @@ module.exports={
              return res.render("employer-register",{error})
          }
          let emp = await Employer.register(new Employer(req.body),req.body.password);
-         console.log(emp);
+        //  console.log(emp);
          req.login(emp,async(err)=>{
             if(err) return next(err);
             req.session.success = "Logged in";
-            console.log(req.user,"in controllers")
-            res.send("Registered");
-
+            res.redirect("/");
          })
 
     },
     async studentregister(req,res,next){
-        console.log(req.body,"reqbidy")
+        // console.log(req.body,"reqbidy")
         const{username,email} = req.body;
         if(req.body.password.length<6)
         {
@@ -80,10 +77,64 @@ module.exports={
          req.login(emp,async(err)=>{
             if(err) return next(err);
             req.session.success = "Logged in";
-            // console.log(req.user,"in controllers")
-            res.send("Registered");
+            res.redirect("/")
 
          })
 
+    },
+    async StudentLogin(req,res,next){
+        const {email,password} = req.body;
+        // if(!user&&error) return next(error);
+        try{
+            const{user,error}  = await Jobseeker.authenticate()(email,password);
+            if(error)throw error
+            const login =  util.promisify(req.login.bind(req));
+            await login(user);
+            
+            // req.session.success = `Welcome back ${user.username}`;
+            // const redirecturl = req.session.redirectTo || "/post";
+            // delete req.session.redirectTo;
+            res.redirect("/");
+
+        }catch(err){
+            let user = await Jobseeker.findOne({email:req.body.email});
+            if(!user) 
+            req.session.error = "The given email is not registered Please register and Log in";
+            // else if(user.googleId)
+            // req.session.error = "You Previously signed up with Google ";
+            else 
+            req.session.error = "Email or Password is incorrect"
+            res.redirect("/login/student")
+
+        }
+    },
+    async EmployerLogin(req,res,next)
+    {   
+        const {email,password} = req.body;
+        try{
+            const{user,error}  = await Employer.authenticate()(email,password);
+            console.log(user,"employer")
+            if(error)throw error
+            const login =  util.promisify(req.login.bind(req));
+            await login(user);
+            
+            // req.session.success = `Welcome back ${user.username}`;
+            // const redirecturl = req.session.redirectTo || "/post";
+            // delete req.session.redirectTo;
+            res.redirect("/");
+
+        }catch(err){
+            let user = await Employer.findOne({email:req.body.email});
+            if(!user) 
+            req.session.error = "The given email is not registered Please register and Log in";
+            // else if(user.googleId)
+            // req.session.error = "You Previously signed up with Google ";
+            else 
+            req.session.error = "Email or Password is incorrect"
+            res.redirect("/login/employer")
+
+        }
+
+       
     }
 }

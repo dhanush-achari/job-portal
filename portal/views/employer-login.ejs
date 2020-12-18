@@ -8,7 +8,7 @@
     <div id="header">
       <div class="container"> 
         <div class="utf-left-side"> 
-          <div id="logo"> <a href="index-1.html"><img src="images/logo.png" alt=""></a> </div>
+          <div id="logo"> <a href="index-1.html"><img src="/images/logo.png" alt=""></a> </div>
           <nav id="navigation">
             <ul id="responsive">
               <li><a href="index-1.html" class="current">Home</a>
@@ -68,12 +68,11 @@
       <div class="col-xl-6 offset-xl-3">
         <div class="utf-login-register-page-aera margin-bottom-50"> 
           <div class="utf-welcome-text-item">
-            <h3>Welcome Back Admin.! Sign in to Continue</h3>
-            <span>Don't Have an Account? <a href="register.html">Sign Up!</a></span> 
+\            <span>Don't Have an Account? <a href="register.html">Sign Up!</a></span> 
 		  </div>
-          <form method="post" id="login-form">
+          <form method="POST" action="/login/employer" id="login-form">
             <div class="utf-no-border">
-              <input type="text" class="utf-with-border" name="emailaddress" id="emailaddress" placeholder="Email Address" required="">
+              <input type="text" class="utf-with-border" name="email" id="emailaddress" placeholder="Email Address" required="">
             </div>
             <div class="utf-no-border">
               <input type="password" class="utf-with-border" name="password" id="password" placeholder="Password" required="">
@@ -81,11 +80,12 @@
 			<div class="checkbox margin-top-10">
 				<input type="checkbox" id="two-step">
 				<label for="two-step"><span class="checkbox-icon"></span> Remember Me</label>
-			</div>
+      </div>
+      <button class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" type="submit" form="login-form" style="width: 545px;">Log In <i class="icon-feather-chevrons-right"></i></button>
         </form>
             <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
         
-   <a href="admin.html"><button class="button full-width utf-button-sliding-icon ripple-effect margin-top-10" type="submit" form="login-form" style="width: 545px;">Log In <i class="icon-feather-chevrons-right"></i></button></a>
+   <a href="admin.html"></a>
           <div class="utf-social-login-separator-item"><span>or</span></div>
           <div class="utf-social-login-buttons-block">
             <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Facebook</button>

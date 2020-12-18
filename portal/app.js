@@ -9,8 +9,8 @@ const methodoverride = require("method-override");
 const engine  = require("ejs-mate");
 const passport = require("passport");
 const favicon = require('serve-favicon');
-const LocalStrategyseeker = require ('passport-local').Strategy;
 const LocalStrategyemployer = require ('passport-local').Strategy;
+const LocalStrategystudent = require ('passport-local').Strategy;
 const seed = require("./seed")
 // seed();
 
@@ -60,17 +60,47 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-// add create strategy and serialise and deserialise user after creating user model
 
-passport.use (new LocalStrategyseeker (Jobseeker.authenticate()));
+
 passport.use (new LocalStrategyemployer (Employer.authenticate()));
+passport.use (new LocalStrategystudent (Jobseeker.authenticate()));
 
+function SessionConstructor(userId, userGroup, details) {
+  this.userId = userId;
+  this.userGroup = userGroup;
+  this.details = details;
+}
 
-passport.serializeUser (Jobseeker.serializeUser ());
-passport.deserializeUser (Jobseeker.deserializeUser ());
+passport.serializeUser(function (userObject, done) {
+  // userObject could be a Model1 or a Model2... or Model3, Model4, etc.
+  let userGroup = "model1";
+  let userPrototype =  Object.getPrototypeOf(userObject);
+  // console.log(userPrototype)
+  if (userPrototype === Jobseeker.prototype) {
+    userGroup = "model1";
+  } else if (userPrototype === Employer.prototype) {
+    userGroup = "model2";
+  }
+  let sessionConstructor = new SessionConstructor(userObject.id, userGroup, '');
+  done(null,sessionConstructor);
+});
 
-passport.serializeUser (Employer.serializeUser ());
-passport.deserializeUser (Employer.deserializeUser ());
+passport.deserializeUser(function (sessionConstructor, done) {
+  if (sessionConstructor.userGroup == 'model1') {
+    Jobseeker.findOne({
+        _id: sessionConstructor.userId
+    }, '-localStrategy.password', function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+        done(err, user);
+    });
+  } else if (sessionConstructor.userGroup == 'model2') {
+    Employer.findOne({
+        _id: sessionConstructor.userId
+    }, '-localStrategy.password', function (err, user) { // When using string syntax, prefixing a path with - will flag that path as excluded.
+        done(err, user);
+    });
+  }
+});
+
 
 //middleware / local variable this should come before any route you render
 app.use(function(req,res,next){
@@ -102,7 +132,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.redirect("/")
+  res.render("error")
 });
 
 module.exports = app;
