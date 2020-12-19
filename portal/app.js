@@ -12,10 +12,11 @@ const favicon = require("serve-favicon");
 const LocalStrategyemployer = require("passport-local").Strategy;
 const LocalStrategystudent = require("passport-local").Strategy;
 const seed = require("./seed");
+
 const authRoutes = require("./routes/auth");
 const passportSetup = require("./config/passport-setup");
 const cookieSession = require("cookie-session");
-const keys = require("./config/keys")
+const keys = require("./config/keys");
 // seed();
 
 // user models
@@ -56,7 +57,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodoverride("_method"));
 
-
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
@@ -66,9 +66,6 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
 
 // passport configuration
 app.use(
