@@ -64,13 +64,16 @@ module.exports = {
        const delimiter = query.length ? '&' : '?';
        res.locals.paginateUrl = req.originalUrl.replace(/(\?|\&)page=\d+/g, '') + `${delimiter}page=`;
        next();
-
-
-
-
-
-
-
-
+    },
+    isFormfilled(req,res,next)
+    {
+        if(req.user.formFilled!=5)
+        {
+            // return res.render(`page${req.user.formFilled+1}`); // this is wrong method as at the same route page will be rendered
+            
+            return res.redirect(`/user/edit?page=${req.user.formFilled+1}`)
+            
+        }
+        next();
     }
 }

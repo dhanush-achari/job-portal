@@ -15,10 +15,16 @@ preferredCourse: String,
 levelOfStudy: String,
 highestEducation: String,
 primaryFinancialSource: String,
-checkOne: boolean,
-checkTwo: boolean,
-checkThree: boolean,
-preferredSession: String
+checkOne: Boolean,
+checkTwo: Boolean,
+checkThree: Boolean,
+courseName: String,
+branch: String,
+collegeName: String,
+univesityName: String,
+yearOfPassing: String,
+preferredSession: String,
+preferredLocation:String
 });
 
 module.exports = mongoose.model("Abroad",AbroadSchema)

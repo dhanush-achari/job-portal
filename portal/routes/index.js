@@ -4,7 +4,6 @@ const router = express.Router();
 const {errorHandler,SearchFilter} = require("../middleware/index")
 const {Empregister,studentregister,StudentLogin,EmployerLogin} = require("../controller/index")
 
-
 /* GET Index page. */
 router.get("/",SearchFilter,async (req,res,next)=>{
           console.log(req.user,"This is req.user")
@@ -13,7 +12,6 @@ router.get("/",SearchFilter,async (req,res,next)=>{
           // console.log(dbquery)
           // const Jobs = await Job.find(dbquery)
           // res.send(Jobs)
-
           res.render("index")
 })
 

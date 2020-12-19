@@ -73,6 +73,7 @@ function SessionConstructor(userId, userGroup, details) {
 
 passport.serializeUser(function (userObject, done) {
   // userObject could be a Model1 or a Model2... or Model3, Model4, etc.
+  // it has prototype of either of the models 
   let userGroup = "model1";
   let userPrototype =  Object.getPrototypeOf(userObject);
   // console.log(userPrototype)

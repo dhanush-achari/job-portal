@@ -33,6 +33,7 @@ module.exports = {
         var temp = new tempmodel(body);
         // await temp.save();
         ttemp.push(temp);
+        user.formFilled = user.formFilled+1;
         await user.save();
         console.log(user)
         // res.redirect("/user/dashboard")
@@ -103,9 +104,21 @@ module.exports = {
      const user = await Jobseeker.findById("5fd7a27c9337922d884bb21b");
      user.bio = req.body.bio;
      user.dob = new Date(req.body.year+'-'+req.body.month+'-'+req.body.day);
+     user.formFilled = user.formFilled+1;
      await user.save();
      console.log(user);
      res.send("ok");
+  },
+  getform(req,res,next)
+  {
+      const {page} = req.query;
+      if(page>=0 && page<=5){
+          return res.render(`form${page}`);
+          /* Now since req.user object has all the properties populate the data in respective form 
+              make sure user is logged in before comming here
+          */
+      }
+      res.redirect("/user/dashboard")
   }
 
 

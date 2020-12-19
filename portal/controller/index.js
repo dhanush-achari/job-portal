@@ -113,7 +113,7 @@ module.exports={
         const {email,password} = req.body;
         try{
             const{user,error}  = await Employer.authenticate()(email,password);
-            console.log(user,"employer")
+            // console.log(user,"employer")
             if(error)throw error
             const login =  util.promisify(req.login.bind(req));
             await login(user);

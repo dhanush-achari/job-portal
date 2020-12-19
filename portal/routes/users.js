@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {errorHandler} = require("../middleware/index")
-const {addDetails,UpdateDetails,DeleteDetails,PersonalDetails}  =  require("../controller/user")
+const {addDetails,UpdateDetails,DeleteDetails,PersonalDetails,getform}  =  require("../controller/user")
 
 
 
@@ -16,6 +16,7 @@ router.get('/dashboard', function(req, res, next) {
   res.render("applicant-profile")
 });
 
+router.get("/edit",getform)
 /* 
 Post user details
 
